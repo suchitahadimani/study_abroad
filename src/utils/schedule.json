@@ -1,0 +1,31 @@
+[
+    {
+      "time": "9:00 AM - 10:00 AM",
+      "event": "Meet in hotel lobby and travel to classroom site"
+    },
+    {
+      "time": "10:00 AM - 10:15 AM",
+      "event": "Welcome, setup, and theme introduction"
+    },
+    {
+      "time": "10:15 AM - 12:30 PM",
+      "event": "Hacking begins"
+    },
+    {
+      "time": "12:30 PM - 1:15 PM",
+      "event": "Lunch break"
+    },
+    {
+      "time": "1:15 PM - 3:00 PM",
+      "event": "Hacking Continues"
+    },
+    {
+      "time": "3:00 PM - 4:00 PM",
+      "event": "Presentations"
+    },
+    {
+      "time": "TBD",
+      "event": "Judging and award determination"
+    }
+  ]
+  

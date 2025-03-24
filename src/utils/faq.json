@@ -1,0 +1,27 @@
+[
+    {
+      "question": "How do I form a team for the hackathon?",
+      "answer": "Participate in the discussion board to start forming teams. Teams should consist of 3-4 undergrad students. Graduate students can float around and join groups in progress during the event."
+    },
+    {
+      "question": "What happens if I don't have a team by the start of the hackathon?",
+      "answer": "Any undergrad student who doesn't have a team by the start of the hackathon will be randomly placed in a group."
+    },
+    {
+      "question": "What tools and resources will be available?",
+      "answer": "You'll have access to the CEC GitLab, IDEs, and any necessary documentation. Don't forget to bring your laptops!"
+    },
+    {
+      "question": "Can I start working on my project before the hackathon?",
+      "answer": "Yes! If you form a group early, feel free to work ahead on your idea and application."
+    },
+    {
+      "question": "What role will graduate students play in the hackathon?",
+      "answer": "Graduate students will serve in multiple roles: as team facilitators and resource experts to help teams brainstorm and troubleshoot, as participants who can join teams, and as judges who will collaborate with Prof. Pettit to assess the results of the hackathon."
+    },
+    {
+        "question": "What are the judging criteria for the hackathon?",
+        "answer": "The judging will be based on the following criteria:\n1. Relevance to Theme (20%): How well the project integrates historical or ethical aspects.\n2. Innovation and Creativity (20%): Originality and inventiveness of the solution.\n3. Technical Complexity and Functionality (20%): Robustness and sophistication of the implementation.\n4. Usability and Presentation (20%): Ease of use and clarity in presenting the solution.\n5. Team Collaboration (20%): How effectively the team worked together."
+      }
+  ]
+  
