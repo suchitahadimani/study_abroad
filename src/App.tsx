@@ -1,24 +1,14 @@
-import './App.css';
-import Header from './pages/Header';
-import About from './pages/About';
-import FAQs from './pages/FAQs';
-import Schedule from './pages/Schedule';
-import Tracks from './pages/Tracks';
-import Footer from './pages/Footer';
+import About from "./pages/About";
+import Tracks from "./pages/Tracks";
+import ScheduleSection from "./pages/Schedule";
 
-
-
-const App = () => {
+function App() {
   return (
-    <div className="App">
-      <Header />
-      <About />
-      <Schedule />
-      <Tracks />
-      <FAQs />
-      <Footer />
+    <div className="w-full min-h-screen">
+      <ScheduleSection />
+
     </div>
   );
-};
+}
 
 export default App;

@@ -1,61 +1,70 @@
-import { useState, useEffect } from 'react';
+"use client";
 
-interface TimeRemaining {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+import { useState, useEffect } from "react";
 
-function CountdownTimer({ targetDate }: { targetDate: number }) {
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(
-    calculateTimeRemaining(targetDate)
-  );
+function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining(targetDate));
-    }, 1000);
+    // Set the target date to January 12, 2025
+    const targetDate = new Date("January 12, 2025 00:00:00").getTime();
 
-    return () => clearInterval(intervalId);
-  }, [targetDate]);
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
 
-  function calculateTimeRemaining(targetDate: number): TimeRemaining {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60),
+        );
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-    if (distance < 0) {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
+        setTimeLeft({ days, hours, minutes, seconds });
+      }
+    };
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Update immediately
+    updateCountdown();
 
-    return { days, hours, minutes, seconds };
-  }
+    // Then update every second
+    const interval = setInterval(updateCountdown, 1000);
+
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
+  // Format numbers to always have two digits
+  const formatNumber = (num:any) => {
+    return num.toString().padStart(2, "0");
+  };
 
   return (
-    <div className="countdown">
-    <div>
-        <div>{timeRemaining.days.toString().padStart(2, '0')}</div>
-        <div>days</div>
-    </div>
-    <div>
-        <div>{timeRemaining.hours.toString().padStart(2, '0')}</div>
-        <div>hours</div>
-    </div>
-    <div>
-        <div>{timeRemaining.minutes.toString().padStart(2, '0')}</div>
-        <div>minutes</div>
-    </div>
-    <div>
-        <div>{timeRemaining.seconds.toString().padStart(2, '0')}</div>
-        <div>seconds</div>
-    </div>
-    </div>
+    <section className="flex relative gap-10 justify-center mt-16 z-[2] max-md:gap-5 max-sm:flex-wrap max-sm:gap-4">
+      <TimeUnit value={formatNumber(timeLeft.days)} label="Days" />
+      <TimeUnit value={formatNumber(timeLeft.hours)} label="Hours" />
+      <TimeUnit value={formatNumber(timeLeft.minutes)} label="Minutes" />
+      <TimeUnit value={formatNumber(timeLeft.seconds)} label="Seconds" />
+    </section>
+  );
+}
 
+function TimeUnit(value:any, label:any) {
+  return (
+    <div className="text-center text-white max-md:text-3xl max-sm:w-[45%]">
+      <div className="mb-2 text-4xl max-md:text-3xl max-sm:text-3xl">
+        {value}
+      </div>
+      <div className="text-3xl max-md:text-3xl max-sm:text-2xl">{label}</div>
+    </div>
   );
 }
 

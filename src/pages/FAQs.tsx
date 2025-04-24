@@ -1,30 +1,16 @@
-import { useState } from 'react';
-import faqsData from '../utils/faq.json'; 
-
 const FAQs = () => {
-  const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
-
-  const handleQuestionClick = (index: number) => {
-    setActiveQuestion(activeQuestion === index ? null : index);  // Toggle active state
-  };
-
   return (
-    <section id="faqs">
-      <h2>FAQs</h2>
-      <div className="faq-container">
-        {faqsData.map((faq, index) => (
-          <div key={index} className="faq">
-            <h3
-              onClick={() => handleQuestionClick(index)}
-              className="faq-question"
-            >
-              {faq.question}
-            </h3>
-            {activeQuestion === index && (
-              <p className="faq-answer">{faq.answer}</p>  // Show the answer if this question is active
-            )}
-          </div>
-        ))}
+    <section className="bg-black text-white py-16 px-6 text-center">
+      <h2 className="text-3xl font-bold">FAQs</h2>
+      <div className="mt-6 max-w-2xl mx-auto text-left">
+        <details className="mb-4">
+          <summary className="font-bold">Who can participate?</summary>
+          <p>Anyone interested in computing and history!</p>
+        </details>
+        <details className="mb-4">
+          <summary className="font-bold">Is the event free?</summary>
+          <p>Yes! The event is completely free to attend.</p>
+        </details>
       </div>
     </section>
   );

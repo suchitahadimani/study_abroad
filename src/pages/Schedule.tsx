@@ -1,91 +1,25 @@
-import { useEffect, useState } from 'react';
-import scheduleData from '../utils/schedule.json'; // import the JSON file
-
-const Schedule = () => {
-  const [schedule, setSchedule] = useState<any[]>([]);
-  const [highlightedRow, setHighlightedRow] = useState<number | null>(null);
-
-  useEffect(() => {
-    // Simulate fetching data
-    setSchedule(scheduleData);
-
-    // Check and highlight the appropriate row based on the current time
-    const interval = setInterval(() => {
-      const now = new Date();
-      let currentRow = null;
-
-      // Loop through the schedule and compare times
-      for (let i = 0; i < scheduleData.length; i++) {
-        const { time } = scheduleData[i];
-
-        // Skip "TBD" events
-        if (time === "TBD") {
-          continue;
-        }
-
-        // Parse time (hours and minutes) for comparison
-        const [startTime, endTime] = time.split(' - ');
-
-        // Convert start time to a Date object
-        const startDate = parseTimeToDate(startTime);
-        let endDate = parseTimeToDate(endTime || startTime);
-
-        // Check if the current time is between the start and end time
-        if (now >= startDate && now <= endDate) {
-          currentRow = i;
-          break;
-        }
-      }
-
-      setHighlightedRow(currentRow);
-
-    }, 1000); // Update every second
-
-    return () => clearInterval(interval); // Clean up the interval when the component unmounts
-
-  }, [scheduleData]);
-
-  // Helper function to parse time in HH:MM AM/PM format to Date object
-  const parseTimeToDate = (time: string) => {
-    const [timePart, modifier] = time.split(' '); // split time and AM/PM part
-    const [hours, minutes] = timePart.split(':').map(Number);
-    
-    const date = new Date();
-    let adjustedHours = hours;
-
-    // Adjust hour for AM/PM
-    if (modifier === 'PM' && hours < 12) {
-      adjustedHours += 12;
-    } else if (modifier === 'AM' && hours === 12) {
-      adjustedHours = 0; 
-    }
-
-    date.setHours(adjustedHours, minutes, 0, 0);
-
-    return date;
-  };
-
+export default function ScheduleSection() {
   return (
-    <section id='schedule'>
-      <h2>Schedule</h2>
-      <table className="schedule-table">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Event</th>
-          </tr>
-        </thead>
-        <tbody>
-          {schedule.map((item, index) => (
-            <tr key={index} className={highlightedRow === index ? 'highlighted' : ''}>
-              <td>{item.time}</td>
-              <td>{item.event}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  );
-};
+    <div className="min-h-screen w-full bg-gradient-to-b from-[#CDEEF8] to-[#5B91A1] flex flex-col justify-center items-center font-marcellus relative">
+      <div className="bg-white text-[#242424] rounded-xl shadow-2xl p-12 max-w-4xl w-[90%] text-center">
+        <h1 className="text-[64px] mb-10">Schedule</h1>
+        <div className="text-[32px] leading-relaxed space-y-6">
+          <p><strong>9:00 AM - 10:00 AM</strong> – Meet in hotel lobby and travel to classroom site</p>
+          <p><strong>10:00 AM - 10:15 AM</strong> – Welcome, setup, and theme introduction</p>
+          <p><strong>10:15 AM - 12:30 PM</strong> – Hacking begins</p>
+          <p><strong>12:30 PM - 1:15 PM</strong> – Lunch break</p>
+          <p><strong>1:15 PM - 3:00 PM</strong> – Hacking Continues</p>
+          <p><strong>3:00 PM - 4:00 PM</strong> – Presentations</p>
+          <p><strong>4:00 PM - 4:30 PM</strong> – Judging</p>
+        </div>
+      </div>
 
-export default Schedule;
+      {/* Cute images at the bottom */}
+      <div className="absolute bottom-6 w-full flex justify-center gap-16">
+        <img src="/assets/babbage.png" alt="Cute 1" className="w-24 h-auto" />
+        <img src="/assets/lovelace.png" alt="Cute 2" className="w-24 h-auto" />
+        <img src="/assets/turing.png" alt="Cute 3" className="w-24 h-auto" />
+      </div>
+    </div>
+  );
+}
