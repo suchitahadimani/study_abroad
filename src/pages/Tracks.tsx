@@ -190,7 +190,7 @@ const CloudLayer = () => {
         }}
         style={{
           position: 'absolute',
-          bottom: '1%',
+          bottom: '0%',
           right: '30%',
           width: '700px',
           opacity: 0.3,

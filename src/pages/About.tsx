@@ -11,7 +11,7 @@ const About = () => {
           top: 0,
           left: 0,
           width: '100%',
-          height: '150vh', // match container height
+          height: '100%', // match container height
           background: 'linear-gradient(to bottom, #1433CD, #7AA2D9, #A3C8E8, #CDEEF8)',
           zIndex: 0,
         }}
