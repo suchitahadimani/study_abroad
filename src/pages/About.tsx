@@ -1,5 +1,5 @@
 
-import { motion } from 'framer-motion';
+import FloatingObject from '../components/FloatingObject';
 
 const About = () => {
   return (
@@ -17,80 +17,26 @@ const About = () => {
         }}
       />
 
-      {/* Bouncing cloud layer positioned higher */}
-      <motion.img
-        src="/assets/cloud.svg"
-        alt="clouds"
-        initial={{ y: 0 }}
-        animate={{ y: [-5, 5, -5] }}
-        transition={{
-          repeat: Infinity,
-          duration: 6,
-          ease: 'easeInOut',
-        }}
-        style={{
-          position: 'absolute',
-          top: '1%', // <–– this moves it higher on the screen
-          left: 0,
-          width: '100%',
-          height: '100vh', // clouds take less vertical space
-          objectFit: 'cover',
-          opacity: 0.3,
-          zIndex: 1,
-        }}
+      <FloatingObject
+        image="/assets/left_flower.svg"
+        width="300px"
+        top="70%"
+        left="calc(100px + 2vw)"
       />
-{/* Bottom-left image */}
 
-<motion.img
-  src="/assets/left_flower.svg"
-  alt="bottom left decoration"
-  initial={{ y: 0, x: 0 }}
-  animate={{
-    y: [-2, 2, -2],
-    x: [-1, 1, -1],
-  }}
-  transition={{
-    repeat: Infinity,
-    repeatType: 'mirror',
-    duration: 4,
-    ease: 'easeInOut',
-  }}
-  style={{
-    position: 'absolute',
-    bottom: 'calc(100px + 2vh)',
-    left: 'calc(100px + 2vw)',
-    width: '300px',
-    height: 'auto',
-    zIndex: 2,
-  }}
-/>
+      <FloatingObject
+        image="/assets/right_flower.svg"
+        width="150px"
+        top="60%"
+        right="calc(100px + 2vw)"
+      />
 
-
-{/* Bottom-right image */}
-
-<motion.img
-  src="/assets/right_flower.svg"
-  alt="bottom right decoration"
-  initial={{ y: 0, rotate: 0 }}
-  animate={{
-    y: [-2, 2, -2],
-    x: [-1, 1, -1],
-  }}
-  transition={{
-    repeat: Infinity,
-    repeatType: 'mirror',
-    duration: 4,
-    ease: 'easeInOut',
-  }}
-  style={{
-    position: 'absolute',
-    bottom: 'calc(100px + 2vh)',
-    right: 'calc(100px + 2vw)',
-    width: '150px',
-    height: 'auto',
-    zIndex: 2,
-  }}
-/>
+      <FloatingObject
+        image="/assets/cloud.svg"
+        width="100%"
+        top="-5%"
+        opacity={0.8}
+      />
 
 
 
@@ -111,7 +57,7 @@ const About = () => {
           style={{
             color: 'black',
             fontFamily: "'Marcellus SC', serif",
-            fontSize: '32pt', // or '2.133rem'
+            fontSize: '32pt', 
             textAlign: 'center',
             maxWidth: '800px',
             lineHeight: '1.6',

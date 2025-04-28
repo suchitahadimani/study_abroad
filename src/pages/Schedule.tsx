@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import schedule from '../utils/schedule.json';
+
 const ScheduleSection = () => {
   return (
     <div style={{ position: 'relative', minHeight: '150vh', width: '100vw', overflowX: 'hidden' }}>
@@ -15,43 +17,43 @@ const ScheduleSection = () => {
         }}
       />
 
-<motion.div
-  initial={{ opacity: 0.7 }}
-  animate={{ opacity: [0.8, 0.6, 0.3, 0.7, 0.8] }}
-  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-  style={{
-    position: 'absolute',
-    top: 0,
-    left: 50,
-    width: '400px',
-    height: '150vh',
-    background: 'linear-gradient(to bottom right, rgb(255, 255, 170), transparent)',
-    transform: 'rotate(-20deg)',
-    filter: 'blur(35px)',
-    mixBlendMode: 'screen',
-    pointerEvents: 'none',
-    zIndex: 1,
-  }}
-/>
+      <motion.div
+        initial={{ opacity: 0.7 }}
+        animate={{ opacity: [0.8, 0.6, 0.3, 0.7, 0.8] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 50,
+          width: '400px',
+          height: '150vh',
+          background: 'linear-gradient(to bottom right, rgb(255, 255, 170), transparent)',
+          transform: 'rotate(-20deg)',
+          filter: 'blur(35px)',
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
 
-<motion.div
-  initial={{ opacity: 0.7 }}
-  animate={{ opacity: [0.8, 0.6, 0.3, 0.7, 0.8] }}
-  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-  style={{
-    position: 'absolute',
-    top: 0,
-    right: 50,
-    width: '400px',
-    height: '150vh',
-    background: 'linear-gradient(to bottom left, rgb(255, 255, 170), transparent)',
-    transform: 'rotate(20deg)',
-    filter: 'blur(35px)',
-    mixBlendMode: 'screen',
-    pointerEvents: 'none',
-    zIndex: 1,
-  }}
-/>
+      <motion.div
+        initial={{ opacity: 0.7 }}
+        animate={{ opacity: [0.8, 0.6, 0.3, 0.7, 0.8] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 50,
+          width: '400px',
+          height: '150vh',
+          background: 'linear-gradient(to bottom left, rgb(255, 255, 170), transparent)',
+          transform: 'rotate(20deg)',
+          filter: 'blur(35px)',
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
 
 
 
@@ -78,7 +80,7 @@ const ScheduleSection = () => {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
             color: 'black',
             fontFamily: "'Marcellus SC', serif",
-            fontSize: '32pt',
+            fontSize: '28pt',
             textAlign: 'center',
             maxWidth: '800px',
             lineHeight: '1.6',
@@ -87,14 +89,14 @@ const ScheduleSection = () => {
         >
           <h1>Schedule</h1>
           <div className="text-[32px] leading-relaxed space-y-6">
-            <p><strong>9:00 AM - 10:00 AM</strong> – Meet in hotel lobby and travel to classroom site</p>
-            <p><strong>10:00 AM - 10:15 AM</strong> – Welcome, setup, and theme introduction</p>
-            <p><strong>10:15 AM - 12:30 PM</strong> – Hacking begins</p>
-            <p><strong>12:30 PM - 1:15 PM</strong> – Lunch break</p>
-            <p><strong>1:15 PM - 3:00 PM</strong> – Hacking Continues</p>
-            <p><strong>3:00 PM - 4:00 PM</strong> – Presentations</p>
-            <p><strong>4:00 PM - 4:30 PM</strong> – Judging</p>
+            {schedule.map((item, index) => (
+              <p key={index}>
+                <strong>{item.time}</strong> – {item.event}
+              </p>
+            ))}
           </div>
+
+          
 
           {/* Left decoration (desktop only) */}
           <img

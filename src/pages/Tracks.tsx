@@ -1,256 +1,89 @@
 
-import { motion } from 'framer-motion';
-
-const tracks = [
-  { label: 'Historical Innovations', image: '/assets/track1.svg' },
-  { label: 'Cryptography', image: '/assets/track2.svg' },
-  { label: 'Accessibility and Ethics', image: '/assets/track3.svg' },
-  { label: 'British Themed', image: '/assets/track4.svg' },
-];
-
-
-const cloudBounce = {
-  initial: { y: 0 },
-  animate: { x: [0, 20, 0], y: [0, -10, 0] },
-  transition: {
-    repeat: Infinity,
-    duration: 5,
-    ease: 'easeInOut',
-  },
-};
+import { AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import tracks from '../utils/tracks.json';
+import FloatingObject from '../components/FloatingObject';
+import TrackCard from '../components/TrackCard';
+import TrackPopup from '../components/TrackPopup';
 
 const CloudLayer = () => {
   return (
     <>
-
-<motion.img
-  src="/assets/flower1.svg"
-  initial={{ x: 0, y: 0, rotate: 0 }}
-  animate={{ 
-    x: [0, 30, -20, 0],
-    y: [0, 200],
-    rotate: [0, 15, -10, 0],
-    opacity: [1, 0.8, 0.4, 0],
-  }}
-  transition={{
-    duration: 12,
-    repeat: Infinity,
-    delay: Math.random() * 5,
-    ease: 'easeInOut',
-  }}
-  style={{
-    position: 'absolute',
-    top: '30%',
-    left: `${Math.random() * 100}%`,
-    width: '100px',
-    opacity: 0.7,
-    pointerEvents: 'none',
-    zIndex: 0,
-  }}
-/>
-
-<motion.img
-  src="/assets/flower2.svg"
-  initial={{ x: 0, y: 0, rotate: 0 }}
-  animate={{
-    y: [0, 300],
-    scale: [0.5, 1.2],
-    opacity: [1, 0.8, 0.6, 0],
-  }}
-  
-  transition={{
-    duration: 12,
-    repeat: Infinity,
-    delay: Math.random() * 5,
-    ease: 'easeInOut',
-  }}
-  style={{
-    position: 'absolute',
-    top: '1%',
-    left: `${Math.random() * 100}%`,
-    width: '200px',
-    opacity: 0.7,
-    pointerEvents: 'none',
-    zIndex: 0,
-  }}
-/>
-
-
-<motion.img
-  src="/assets/flower3.svg"
-  alt="petal"
-  initial={{
-    y: -100,            // start above screen
-    x: 0,
-    rotate: 0,
-    opacity: 0,
-  }}
-  animate={{
-    y: [ -100, 0, 100, 200, 300 ],          // natural fall
-    x: [ 0, 20, -30, 15 ],                 // sway
-    rotate: [0, 15, -10, 5, 0],            // flutter
-    opacity: [0, 1, 0.8, 0.4, 0],          // fade out as it falls
-  }}
-  transition={{
-    duration: 12 + Math.random() * 3,       // slight variety
-    repeat: Infinity,
-    ease: 'easeInOut',
-    delay: Math.random() * 5,
-  }}
-  style={{
-    position: 'absolute',
-    top: '60%',
-    left: `${Math.random() * 100}%`,
-    width: '100px',
-    pointerEvents: 'none',
-    zIndex: 0,
-  }}
-/>
-
-
-
-
-
-
-    <motion.img
-        src="/assets/butterfly.svg"
-        alt="Butterfly"
-        {...cloudBounce}
-        style={{
-          position: 'absolute',
-          top: '57%',
-          right: '7%',
-          width: '100px',
-          opacity: 0.8,
-          zIndex: 2,
-        }}
+      <FloatingObject
+        image="/assets/flower1.svg"
+        width="300px"
+        top="10%"
+        left="10%"
+        opacity={0.5}
+        motionType="fall"
       />
 
-
-      <motion.img
-        src="/assets/hummingbird.svg"
-        alt="Hummingbird"
-        {...cloudBounce}
-        style={{
-          position: 'absolute',
-          top: '15%',
-          left: '15%',
-          width: '100px',
-          opacity: 0.8,
-          zIndex: 2,
-        }}
+      <FloatingObject
+        image="/assets/flower2.svg"
+        width="200px"
+        top="60%"
+        left="50%"
+        opacity={0.7}
+        motionType="fall"
       />
 
-      {/* Top Right Cloud */}
-      <motion.img
-        src="/assets/cloud1.svg"
-        alt="Top Right Cloud"
-        {...cloudBounce}
-        style={{
-          position: 'absolute',
-          top: '2%',
-          right: '3%',
-          width: '800px',
-          opacity: 0.8,
-          zIndex: 2,
-        }}
+      <FloatingObject
+        image="/assets/flower3.svg"
+        width="100px"
+        top="75"
+        left="90%"
+        opacity={0.7}
+        motionType="fall"
       />
 
-      {/* Middle Left Cloud */}
-      <motion.img
-        src="/assets/cloud2.svg"
-        alt="Middle Left Cloud"
-        initial={{ y: 0 }}
-        animate={{ y: [0, -15, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 6,
-          ease: 'easeInOut',
-        }}
-        style={{
-          position: 'absolute',
-          top: '40%',
-          left: '-10%',
-          width: '800px',
-          opacity: 0.7,
-          zIndex: 2,
-        }}
+      <FloatingObject
+        image="/assets/butterfly.svg"
+        width="100px"
+        top="57%"
+        right="7%"
+        opacity={0.8}
+        zIndex={2}
+        motionType="bounce" 
       />
 
-      {/* Bottom Right Cloud */}
-      <motion.img
-        src="/assets/cloud3.svg"
-        alt="Bottom Right Cloud"
-        initial={{ y: 0 }}
-        animate={{ y: [0, -12, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 7,
-          ease: 'easeInOut',
-        }}
-        style={{
-          position: 'absolute',
-          bottom: '0%',
-          right: '30%',
-          width: '700px',
-          opacity: 0.3,
-          zIndex: 2,
-        }}
+      <FloatingObject
+        image="/assets/hummingbird.svg"
+        width="100px"
+        top="5%"
+        left="28%"
+        zIndex={2}
+        motionType="bounce" 
+      />
+
+      <FloatingObject
+        image="/assets/cloud1.svg"
+        width="800px"
+        top="2%"
+        right="3%"
+        zIndex={2}
+        motionType="drift" 
+      />
+
+      <FloatingObject
+        image="/assets/cloud2.svg"
+        width="800px"
+        top="40%"
+        left="-10%"
+        opacity={0.9}
+        zIndex={2}
+        motionType="drift" 
+      />
+
+      <FloatingObject
+        image="/assets/cloud3.svg"
+        width="700px"
+        top="90%"
+        right="30%"
+        opacity={0.3}
+        zIndex={2}
+        motionType="drift" 
       />
     </>
-  );
-};
-
-
-const ShineImage = ({ src, alt }: { src: string; alt: string }) => {
-  const delay = Math.random() * 10 + 3;
-
-  return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-      style={{
-        position: 'relative',
-        display: 'inline-block',
-        width: '100%',
-        maxWidth: '500px',
-      }}
-    >
-      {/* Base image */}
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: '100%',
-          height: 'auto',
-          display: 'block',
-          borderRadius: '12px',
-        }}
-      />
-
-      {/* Shine overlay */}
-      <motion.div
-        initial={{ left: '-10%', opacity: 0 }}
-        animate={{ left: '100%', opacity: [0, 1, 0] }}
-        transition={{
-          delay,
-          repeat: Infinity,
-          duration: 1.5,
-          repeatDelay: delay,
-          ease: 'easeInOut',
-        }}
-        style={{
-          position: 'absolute',
-          top: '10%',
-          bottom: '10%',
-          left: 0,
-          width: '5%',
-          background: 'linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent)',
-          pointerEvents: 'none',
-          transform: 'skewX(-20deg)',
-        }}
-      />
-    </motion.div>
   );
 };
 
@@ -258,15 +91,67 @@ const ShineImage = ({ src, alt }: { src: string; alt: string }) => {
 
 
 const Tracks = () => {
+  const [selectedTrack, setSelectedTrack] = useState<null | typeof tracks[0]>(null);
+
   const handleClick = (label: string) => {
-    console.log(`Clicked: ${label}`);
-    // eventually show a new component here
+    const track = tracks.find((t) => t.label === label);
+    if (track) setSelectedTrack(track);
   };
 
+  const closePopup = () => setSelectedTrack(null);
+
   return (
-<div
-  style={{
-    position: 'relative', // 🔧 KEY FIX
+    <div style={styles.container}>
+      <CloudLayer />
+
+      <div style={styles.inner}>
+        <h1 style={styles.title}>Tracks</h1>
+
+        {/* Track Grid */}
+        <div className="track-grid" style={styles.grid}>
+          {tracks.map((track, index) => (
+            <TrackCard
+              key={index}
+              label={track.label}
+              image={track.image}
+              onClick={() => handleClick(track.label)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Popup */}
+      <AnimatePresence>
+        {selectedTrack && (
+          <TrackPopup selectedTrack={selectedTrack} onClose={closePopup} />
+        )}
+      </AnimatePresence>
+
+      {/* Grid Styles */}
+      <style>
+        {`
+          .track-grid {
+            display: grid;
+            gap: 4rem;
+            grid-template-columns: 1fr;
+          }
+
+          @media (min-width: 768px) {
+            .track-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+export default Tracks;
+
+const styles = {
+  container: {
+    position: 'relative',
     backgroundColor: '#CDEEF8',
     fontFamily: "'Marcellus SC', serif",
     fontSize: '32pt',
@@ -274,71 +159,27 @@ const Tracks = () => {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  }}
->
-      <CloudLayer />
-      <div
-        style={{
-          display: 'grid',
-          gap: '4rem',
-          maxWidth: '1200px',
-          width: '100%',
-          gridTemplateColumns: '1fr', // fallback for small screens
-        }}
-      >
-    
+  } as React.CSSProperties,
 
-        <style>
-          {`
-            @media (min-width: 768px) {
-              .track-grid {
-                grid-template-columns: repeat(2, 1fr);
-              }
-            }
-          `}
-        </style>
+  inner: {
+    display: 'grid',
+    gap: '4rem',
+    maxWidth: '1200px',
+    width: '100%',
+  } as React.CSSProperties,
 
-        <h1
-          style={{
-            fontFamily:"'Marcellus SC', serif",
-            color: '#EBC52A',
-            fontSize: '64px',
-            textAlign: 'center',
-            marginBottom: '2rem',
-            zIndex: 2,
-          }}
-        >
-          Tracks
-        </h1>
+  title: {
+    fontFamily: "'Marcellus SC', serif",
+    color: '#EBC52A',
+    fontSize: '96pt',
+    textAlign: 'center',
+    marginBottom: '2rem',
+    zIndex: 2,
+  } as React.CSSProperties,
 
-        <div className="track-grid" style={{ display: 'grid', gap: '4rem' }}>
-          {tracks.map((track, index) => (
-            <div
-              key={index}
-              style={{
-                textAlign: 'center',
-                cursor: 'pointer',
-              }}
-              onClick={() => handleClick(track.label)}
-            >
-             <h2
-              style={{
-                fontFamily: "'Moon Dance', cursive",
-                color: '#EBC52A',
-                fontSize: '64',
-                marginBottom: '1rem',
-              }}
-            >
-              {track.label}
-            </h2>
-            <ShineImage src={track.image} alt={track.label} />
-
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  grid: {
+    display: 'grid',
+    gap: '4rem',
+  } as React.CSSProperties,
 };
 
-export default Tracks;

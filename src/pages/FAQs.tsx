@@ -1,38 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const faqData = [
-  {
-    question: 'How do I form a team for the hackathon?',
-    answer:
-      'Participate in the discussion board to start forming teams. Teams should consist of 3-4 undergrad students. Graduate students can float around and join groups in progress during the event.',
-  },
-  {
-    question: "What happens if I don't have a team by the start of the hackathon?",
-    answer:
-      "Any undergrad student who doesn't have a team by the start of the hackathon will be randomly placed in a group.",
-  },
-  {
-    question: 'What tools and resources will be available?',
-    answer:
-      "You'll have access to the CEC GitLab, IDEs, and any necessary documentation. Don't forget to bring your laptops!",
-  },
-  {
-    question: 'Can I start working on my project before the hackathon?',
-    answer:
-      'Yes! If you form a group early, feel free to work ahead on your idea and application.',
-  },
-  {
-    question: 'What role will graduate students play in the hackathon?',
-    answer:
-      'Graduate students will serve in multiple roles: as team facilitators and resource experts to help teams brainstorm and troubleshoot, as participants who can join teams, and as judges who will collaborate with Prof. Pettit to assess the results of the hackathon.',
-  },
-  {
-    question: 'What are the judging criteria for the hackathon?',
-    answer:
-      'The judging will be based on the following criteria: \n\n1. Relevance to Theme (20%): How well the project integrates historical or ethical aspects. \n2. Innovation and Creativity (20%): Originality and inventiveness of the solution. \n3. Technical Complexity and Functionality (20%): Robustness and sophistication of the implementation. \n4. Usability and Presentation (20%): Ease of use and clarity in presenting the solution. \n5. Team Collaboration (20%): How effectively the team worked together.',
-  },
-];
+import faqData from '../utils/faq.json';
 
 const FAQs = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -42,33 +10,95 @@ const FAQs = () => {
   };
 
   return (
-    <div style={{ position: 'relative', minHeight: '150vh', width: '100vw', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100vw', overflowX: 'hidden' }}>
+      
       {/* Background */}
       <div
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(to bottom, #5B91A1, #000000)',
+          right: 0,
+          bottom: 0,
+          background: 'linear-gradient(to bottom, #5B91A1, #000000, #000000)',
           zIndex: 0,
         }}
       />
 
-      {/* Foreground */}
+      {/* Decorative Lines */}
+      <div style={{
+        position: 'absolute',
+        top: '30%',
+        left: 0,
+        width: '150vw',
+        height: '12px',
+        backgroundColor: 'purple',
+        transform: 'rotate(20deg)',
+        transformOrigin: 'left center',
+        zIndex: 1,
+        borderRadius: '3px',
+      }} />
+
+      <div style={{
+        position: 'absolute',
+        top: '100%',
+        left: '30%',
+        width: '100vw',
+        height: '12px',
+        backgroundColor: 'limegreen',
+        transform: 'rotate(-30deg)',
+        transformOrigin: 'left center',
+        zIndex: 1,
+        borderRadius: '3px',
+      }} />
+
+      <div style={{
+        position: 'absolute',
+        bottom: 25,
+        left: 0,
+        width: '150vw',
+        height: '12px',
+        backgroundColor: 'orange',
+        zIndex: 1,
+        borderRadius: '3px',
+      }} />
+
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        right: '16vw',
+        width: '12px',
+        height: '120vh',
+        backgroundColor: 'yellow',
+        zIndex: 1,
+        borderRadius: '3px',
+      }} />
+
+      <div style={{
+        position: 'absolute',
+        bottom: '95vh',
+        left: '82vw',
+        width: '25vw',
+        height: '12px',
+        backgroundColor: 'yellow',
+        zIndex: 1,
+        borderRadius: '3px',
+      }} />
+
+      {/* Foreground Content */}
       <div
         style={{
           position: 'relative',
           zIndex: 2,
-          minHeight: '100vh',
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'start',
-          padding: '4rem 2rem',
+          flexDirection: 'column',
+          justifyContent: 'start',
+          alignItems: 'center',
+          padding: '4rem 2rem 6rem 2rem',
           boxSizing: 'border-box',
         }}
       >
+
         <div
           style={{
             color: 'white',
@@ -80,27 +110,33 @@ const FAQs = () => {
         >
           {/* London Underground Style Title */}
           <div style={{ position: 'relative', width: 'fit-content', margin: '0 auto 4rem auto' }}>
+
+            {/* Circle */}
             <div
               style={{
-                width: '200px',
-                height: '200px',
+                width: '10em',
+                height: '10em',
                 borderRadius: '50%',
-                border: '30px solid red',
+                border: '2em solid red',
                 position: 'relative',
               }}
             >
-             <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%', // center from left
-                transform: 'translate(-50%, -50%)', // center horizontally and vertically
-                width: '100vw', // span full screen width
-                height: '40px',
-                backgroundColor: '#001CA7',
-                zIndex: 2,
-              }}
-            />
+
+              {/* Blue Line */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: '100vw',
+                  height: '4em',
+                  backgroundColor: '#001CA7',
+                  zIndex: 2,
+                }}
+              />
+
+              {/* FAQ Header */}
               <div
                 style={{
                   position: 'absolute',
@@ -108,7 +144,7 @@ const FAQs = () => {
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
                   color: 'white',
-                  fontSize: '36pt',
+                  fontSize: '4em',
                   fontWeight: 'bold',
                   zIndex: 3,
                   letterSpacing: '1px',
@@ -119,97 +155,94 @@ const FAQs = () => {
             </div>
           </div>
 
-          {/* FAQ Entries */}
-          <div>
-            {faqData.map((faq, index) => (
-              <div key={index} style={{ marginBottom: '1.5rem' }}>
-                <div style={{ position: 'relative', marginBottom: '2rem' }}>
-                <div style={{ position: 'relative', marginBottom: '2rem', paddingLeft: '3rem' }}>
-  {/* Vertical metro line */}
-  <motion.div
-    initial={{ height: '40px' }}
-    animate={{
-      height: openIndex === index ? '160px' : '40px',
-      backgroundColor: '#FF4136', // Change per question if desired
-    }}
-    transition={{ duration: 0.4 }}
-    style={{
-      width: '6px',
-      borderRadius: '6px',
-      position: 'absolute',
-      top: 0,
-      left: '1rem',
-      zIndex: 0,
-    }}
-  />
+          {/* FAQ Wrapper */}
+          <div style={{ position: 'relative', marginLeft: '4rem' }}>
+            
+            {/* Long Vertical Red Line */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '-25%',
+                left: 0,
+                bottom: 0,
+                width: '12px',
+                backgroundColor: '#FF4136',
+                zIndex: 1,
+                borderRadius: '6px',
+              }}
+            />
 
-  {/* Metro "stop" dot */}
-  <motion.div
-    initial={{ scale: 1, boxShadow: '0 0 0px white' }}
-    animate={
-      openIndex === index
-        ? { scale: 1.2, boxShadow: '0 0 10px 4px white' }
-        : { scale: 1, boxShadow: '0 0 0px white' }
-    }
-    transition={{ duration: 0.3 }}
-    style={{
-      width: '16px',
-      height: '16px',
-      borderRadius: '50%',
-      backgroundColor: 'white',
-      position: 'absolute',
-      top: 0,
-      left: '0.7rem',
-      zIndex: 2,
-    }}
-  />
+            {/* FAQ Entries */}
+            <div>
+              {faqData.map((faq, index) => (
+                <div key={index} style={{ position: 'relative', marginBottom: '4rem' }}>
+                  
+                  {/* White Glowing Dot */}
+                  <motion.div
+                    initial={{ scale: 1, boxShadow: '0 0 0px white' }}
+                    animate={openIndex === index 
+                      ? { scale: 1.3, boxShadow: '0 0 10px 5px white' }
+                      : { scale: 1, boxShadow: '0 0 4px 2px white' }}
+                    transition={{ duration: 0.4 }}
+                    style={{
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '50%',
+                      backgroundColor: 'white',
+                      position: 'absolute',
+                      left: '-0.2rem',
+                      top: '1.5rem',
+                      zIndex: 2,
+                    }}
+                  />
 
-  {/* Question */}
-  <button
-    onClick={() => toggle(index)}
-    style={{
-      background: 'none',
-      border: 'none',
-      color: 'white',
-      textAlign: 'left',
-      fontSize: '20pt',
-      fontWeight: 'bold',
-      cursor: 'pointer',
-      zIndex: 3,
-    }}
-  >
-    Q: {faq.question}
-  </button>
+                  {/* Question Button */}
+                  <button
+                    onClick={() => toggle(index)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'white',
+                      textAlign: 'left',
+                      fontSize: '20pt',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      paddingLeft: '2rem',
+                      position: 'relative',
+                      outline: 'none',
+                      zIndex: 3,
+                    }}
+                  >
+                    Q: {faq.question}
+                  </button>
 
-  {/* Animated Answer */}
-  <AnimatePresence>
-    {openIndex === index && (
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.4 }}
-        style={{
-          overflow: 'hidden',
-          marginTop: '0.5rem',
-          paddingLeft: '0.5rem',
-          whiteSpace: 'pre-wrap',
-        }}
-      >
-        <p style={{ fontSize: '16pt', fontWeight: 300 }}>{faq.answer}</p>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</div>
+                  {/* Expandable Answer */}
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.4 }}
+                        style={{
+                          overflow: 'hidden',
+                          marginTop: '0.5rem',
+                          paddingLeft: '2rem',
+                          whiteSpace: 'pre-wrap',
+                        }}
+                      >
+                        <p style={{ fontSize: '16pt', fontWeight: 300 }}>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
-
- 
 
     </div>
   );
