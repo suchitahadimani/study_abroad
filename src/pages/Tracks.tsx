@@ -101,6 +101,7 @@ const Tracks = () => {
   const closePopup = () => setSelectedTrack(null);
 
   return (
+    <section id="tracks">
     <div style={styles.container}>
       <CloudLayer />
 
@@ -144,6 +145,7 @@ const Tracks = () => {
         `}
       </style>
     </div>
+    </section>
   );
 };
 

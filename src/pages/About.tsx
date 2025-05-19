@@ -3,6 +3,7 @@ import FloatingObject from '../components/FloatingObject';
 
 const About = () => {
   return (
+    <section id="about">
     <div style={{ position: 'relative', minHeight: '150vh', width: '100vw', overflowX: 'hidden' }}>
       {/* Gradient background */}
       <div
@@ -73,6 +74,7 @@ const About = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

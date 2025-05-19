@@ -10,7 +10,8 @@ const FAQs = () => {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100vw', overflowX: 'hidden' }}>
+    <section id="faq">
+    <div style={{ position: 'relative', overflowX: 'hidden', minHeight: '100vh' }}>
       
       {/* Background */}
       <div
@@ -20,10 +21,24 @@ const FAQs = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(to bottom, #5B91A1, #000000, #000000)',
+          background: 'linear-gradient(to bottom, #5B91A1,rgb(19, 19, 19), #000000)',
           zIndex: 0,
+          pointerEvents: 'none',
         }}
       />
+
+      <div
+  style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 1,
+    pointerEvents: 'none', // prevent blocking clicks or scroll
+    overflow: 'hidden', // prevent scroll area expansion
+  }}
+>
 
       {/* Decorative Lines */}
       <div style={{
@@ -37,6 +52,7 @@ const FAQs = () => {
         transformOrigin: 'left center',
         zIndex: 1,
         borderRadius: '3px',
+        pointerEvents: 'none',
       }} />
 
       <div style={{
@@ -50,6 +66,7 @@ const FAQs = () => {
         transformOrigin: 'left center',
         zIndex: 1,
         borderRadius: '3px',
+        pointerEvents: 'none',
       }} />
 
       <div style={{
@@ -61,6 +78,7 @@ const FAQs = () => {
         backgroundColor: 'orange',
         zIndex: 1,
         borderRadius: '3px',
+        pointerEvents: 'none',
       }} />
 
       <div style={{
@@ -68,22 +86,14 @@ const FAQs = () => {
         bottom: 0,
         right: '16vw',
         width: '12px',
-        height: '120vh',
+        height: '130vh',
         backgroundColor: 'yellow',
         zIndex: 1,
         borderRadius: '3px',
+        pointerEvents: 'none',
       }} />
+</div>
 
-      <div style={{
-        position: 'absolute',
-        bottom: '95vh',
-        left: '82vw',
-        width: '25vw',
-        height: '12px',
-        backgroundColor: 'yellow',
-        zIndex: 1,
-        borderRadius: '3px',
-      }} />
 
       {/* Foreground Content */}
       <div
@@ -220,12 +230,11 @@ const FAQs = () => {
                   <AnimatePresence>
                     {openIndex === index && (
                       <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
+                        initial={{ opacity: 0}}
+                        animate={{ opacity: 1}}
+                        exit={{ opacity: 0}}
                         transition={{ duration: 0.4 }}
                         style={{
-                          overflow: 'hidden',
                           marginTop: '0.5rem',
                           paddingLeft: '2rem',
                           whiteSpace: 'pre-wrap',
@@ -245,6 +254,7 @@ const FAQs = () => {
       </div>
 
     </div>
+    </section>
   );
 };
 

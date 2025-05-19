@@ -59,6 +59,7 @@ const TrackPopup = ({ selectedTrack, onClose }: TrackPopupProps) => {
             border: 'none',
             fontSize: '2rem',
             cursor: 'pointer',
+            color: '#000'
           }}
         >
           X
@@ -74,15 +75,15 @@ const TrackPopup = ({ selectedTrack, onClose }: TrackPopupProps) => {
           }}
         />
 
-        <p style={{ fontFamily: "'Marcellus SC', serif", fontSize: '22px', marginBottom: '1rem' }}>
+        <p style={{ fontFamily: "'Marcellus SC', serif", fontSize: '22px', marginBottom: '1rem', color: '#000' }}>
           {selectedTrack.description}
         </p>
 
-        <h3 style={{ fontFamily: "'Marcellus SC', serif", fontSize: '30px', marginBottom: '1rem' }}>
+        <h3 style={{ fontFamily: "'Marcellus SC', serif", fontSize: '30px', marginBottom: '1rem' , color: '#000'}}>
           Project Ideas:
         </h3>
 
-        <ul style={{ fontFamily: "'Marcellus SC', serif", fontSize: '22px', paddingLeft: '2rem' }}>
+        <ul style={{ fontFamily: "'Marcellus SC', serif", fontSize: '22px', paddingLeft: '2rem' , color: '#000'}}>
           {selectedTrack.ideas.map((idea, i) => (
             <li key={i} style={{ marginBottom: '0.5rem' }}>{idea}</li>
           ))}

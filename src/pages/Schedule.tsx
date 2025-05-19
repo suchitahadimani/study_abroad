@@ -3,6 +3,7 @@ import schedule from '../utils/schedule.json';
 
 const ScheduleSection = () => {
   return (
+    <section id="schedule">
     <div style={{ position: 'relative', minHeight: '150vh', width: '100vw', overflowX: 'hidden' }}>
       {/* Gradient background */}
       <div
@@ -144,6 +145,7 @@ const ScheduleSection = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 
