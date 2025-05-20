@@ -201,24 +201,27 @@ function Header() {
 
         {/* Countdown text */}
         <div style={{ flex: 1, color: 'white', fontFamily: "'Marcellus SC', serif", textAlign: 'right', zIndex: 3, minWidth: '300px'}}>
-          <div style={{ fontSize: '64pt' }}>CS ORIGINS HACKATHON 2025</div>
-          <div style={{ fontSize: '32pt', marginTop: '1rem', marginBottom: '4rem' }}>January 12, 2025</div>
+          <div style={{ fontSize: isMobile ? '48pt' : '65pt',}}>CS ORIGINS HACKATHON 2026</div>
+          <div style={{ fontSize: isMobile ? '28pt' : '32pt', marginTop: '1rem', marginBottom: '4rem' }}>January 12, 2026</div>
 
           <div
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              gap: '4rem',
-              marginTop: '4rem',
-              fontSize: '48pt',
-              textShadow: '0 0 8px white, 0 0 15px #5dafff',
-              flexWrap: 'wrap',
-            }}
-          >
+          style={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            justifyContent: isMobile ? 'center' : 'flex-end',
+            alignItems: isMobile ? 'center' : 'flex-end',
+            gap: isMobile ? '2rem' : '4rem',
+            marginTop: '4rem',
+            fontSize: isMobile ? '36pt' : '48pt',
+            textShadow: '0 0 8px white, 0 0 15px #5dafff',
+            flexWrap: 'wrap',
+          }}
+        >
+
             {['Days', 'Hours', 'Minutes', 'Seconds'].map((label, i) => (
               <div key={label} style={{ textAlign: 'center' }}>
                 <div>{formatNumber(Object.values(timeLeft)[i])}</div>
-                <div style={{ fontSize: '48pt' }}>{label}</div>
+                <div>{label}</div>
               </div>
             ))}
           </div>

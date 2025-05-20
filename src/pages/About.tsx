@@ -34,8 +34,9 @@ const About = () => {
 
       <FloatingObject
         image="/assets/cloud.svg"
-        width="100%"
-        top="-5%"
+        width="clamp(800px, 100vw, 100vw)"
+        top="0%"
+        
         opacity={0.8}
       />
 

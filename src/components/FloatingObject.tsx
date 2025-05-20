@@ -11,6 +11,8 @@ interface FloatingObjectProps {
   opacity?: number;
   zIndex?: number;
   motionType?: 'bounce' | 'drift' | 'fall' | 'sway'; 
+  minWidth?: string;  
+  minHeight?: string; 
 }
 
 const getAnimation = (motionType: FloatingObjectProps['motionType']) => {
@@ -61,6 +63,8 @@ const FloatingObject = ({
   bottom,
   opacity = 1,
   zIndex = 1,
+  minWidth,
+  minHeight,
   motionType = 'bounce', // default is 'bounce'
 }: FloatingObjectProps) => {
   const animation = getAnimation(motionType);
@@ -81,6 +85,8 @@ const FloatingObject = ({
         opacity,
         pointerEvents: 'none',
         zIndex,
+        minWidth,
+        minHeight,
       }}
     />
   );

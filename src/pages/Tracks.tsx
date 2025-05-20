@@ -77,7 +77,7 @@ const CloudLayer = () => {
       <FloatingObject
         image="/assets/cloud3.svg"
         width="700px"
-        top="90%"
+        top="85%"
         right="30%"
         opacity={0.3}
         zIndex={2}

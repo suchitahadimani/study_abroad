@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
 import schedule from '../utils/schedule.json';
 
 const ScheduleSection = () => {
   return (
     <section id="schedule">
-    <div style={{ position: 'relative', minHeight: '150vh', width: '100vw', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', width: '100vw', overflowX: 'hidden' }}>
       {/* Gradient background */}
       <div
         style={{
@@ -18,84 +17,49 @@ const ScheduleSection = () => {
         }}
       />
 
-      <motion.div
-        initial={{ opacity: 0.7 }}
-        animate={{ opacity: [0.8, 0.6, 0.3, 0.7, 0.8] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 50,
-          width: '400px',
-          height: '150vh',
-          background: 'linear-gradient(to bottom right, rgb(255, 255, 170), transparent)',
-          transform: 'rotate(-20deg)',
-          filter: 'blur(35px)',
-          mixBlendMode: 'screen',
-          pointerEvents: 'none',
-          zIndex: 1,
-        }}
-      />
-
-      <motion.div
-        initial={{ opacity: 0.7 }}
-        animate={{ opacity: [0.8, 0.6, 0.3, 0.7, 0.8] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 50,
-          width: '400px',
-          height: '150vh',
-          background: 'linear-gradient(to bottom left, rgb(255, 255, 170), transparent)',
-          transform: 'rotate(20deg)',
-          filter: 'blur(35px)',
-          mixBlendMode: 'screen',
-          pointerEvents: 'none',
-          zIndex: 1,
-        }}
-      />
-
-
-
-
 
       {/* Foreground text and images */}
       <div
         style={{
           position: 'relative',
           zIndex: 2,
-          minHeight: '180vh',
+          minHeight: '110vh',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '4rem 2rem',
+          padding: '3rem 1rem',
           boxSizing: 'border-box',
         }}
       >
         <div
           style={{
-            backgroundColor: 'white',
-            padding: '2rem',
+            backgroundColor: '#F9F8E7',
+            padding: '0rem 5rem 3rem 5rem',
             borderRadius: '1rem',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 4px 12px rgba(69, 38, 38, 5)',
             color: 'black',
+            fontSize: '24px',
             fontFamily: "'Marcellus SC', serif",
-            fontSize: '28pt',
             textAlign: 'center',
-            maxWidth: '800px',
+            maxWidth: '1000px',
             lineHeight: '1.6',
             position: 'relative',
           }}
         >
           <h1>Schedule</h1>
-          <div className="text-[32px] leading-relaxed space-y-6">
+          <div style={{ width: '100%' }}>
+
             {schedule.map((item, index) => (
-              <p key={index}>
-                <strong>{item.time}</strong> – {item.event}
-              </p>
+              <div
+                key={index}
+                style={{ marginBottom: '1.5rem' }} 
+              >
+                <div style={{ fontWeight: 1000}}>{item.time}</div>
+                <div>{item.event}</div>
+              </div>
             ))}
           </div>
+
 
           
 
