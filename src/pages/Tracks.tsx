@@ -1,6 +1,6 @@
-
+"use client"
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import tracks from '../utils/tracks.json';
 import FloatingObject from '../components/FloatingObject';
 import TrackCard from '../components/TrackCard';
@@ -92,6 +92,19 @@ const CloudLayer = () => {
 
 const Tracks = () => {
   const [selectedTrack, setSelectedTrack] = useState<null | typeof tracks[0]>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMedium, setIsMedium] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsMedium(width >= 768 && width < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleClick = (label: string) => {
     const track = tracks.find((t) => t.label === label);
@@ -99,6 +112,41 @@ const Tracks = () => {
   };
 
   const closePopup = () => setSelectedTrack(null);
+
+  const styles = {
+  container: {
+    position: 'relative',
+    backgroundColor: '#CDEEF8',
+    fontFamily: "'Marcellus SC', serif",
+    fontSize: isMobile ? '20pt' : isMedium ? '26pt' : '32pt',
+    padding: '4rem 2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  } as React.CSSProperties,
+
+  inner: {
+    display: 'grid',
+    gap: '4rem',
+    maxWidth: '1200px',
+    width: '100%',
+  } as React.CSSProperties,
+
+  title: {
+    fontFamily: "'Marcellus SC', serif",
+    color: '#EBC52A',
+    fontSize: isMobile ? '40pt' : isMedium ? '64pt' : '96pt',
+    textAlign: 'center',
+    marginBottom: '2rem',
+    zIndex: 2,
+  } as React.CSSProperties,
+
+  grid: {
+    display: 'grid',
+    gap: '4rem',
+  } as React.CSSProperties,
+};
+
 
   return (
     <section id="tracks">
@@ -151,37 +199,4 @@ const Tracks = () => {
 
 export default Tracks;
 
-const styles = {
-  container: {
-    position: 'relative',
-    backgroundColor: '#CDEEF8',
-    fontFamily: "'Marcellus SC', serif",
-    fontSize: '32pt',
-    padding: '4rem 2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  } as React.CSSProperties,
-
-  inner: {
-    display: 'grid',
-    gap: '4rem',
-    maxWidth: '1200px',
-    width: '100%',
-  } as React.CSSProperties,
-
-  title: {
-    fontFamily: "'Marcellus SC', serif",
-    color: '#EBC52A',
-    fontSize: '96pt',
-    textAlign: 'center',
-    marginBottom: '2rem',
-    zIndex: 2,
-  } as React.CSSProperties,
-
-  grid: {
-    display: 'grid',
-    gap: '4rem',
-  } as React.CSSProperties,
-};
 

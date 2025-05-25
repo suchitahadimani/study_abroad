@@ -1,6 +1,21 @@
+"use client"
+import { useState, useEffect } from 'react';
 import schedule from '../utils/schedule.json';
 
 const ScheduleSection = () => {
+    const [isMobile, setIsMobile] = useState(false);
+  const [isMedium, setIsMedium] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsMedium(width >= 768 && width < 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <section id="schedule">
     <div style={{ position: 'relative', minHeight: '100vh', width: '100vw', overflowX: 'hidden' }}>
@@ -38,7 +53,7 @@ const ScheduleSection = () => {
             borderRadius: '1rem',
             boxShadow: '0 4px 12px rgba(69, 38, 38, 5)',
             color: 'black',
-            fontSize: '24px',
+            fontSize: isMobile ? '16px' : isMedium ? '20px' : '24px',
             fontFamily: "'Marcellus SC', serif",
             textAlign: 'center',
             maxWidth: '1000px',
@@ -46,7 +61,8 @@ const ScheduleSection = () => {
             position: 'relative',
           }}
         >
-          <h1>Schedule</h1>
+          <h1 style={{ fontSize: isMobile ? '24pt' : isMedium ? '32pt' : '40pt'}}>Schedule</h1>
+          
           <div style={{ width: '100%' }}>
 
             {schedule.map((item, index) => (

@@ -1,9 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import faqData from '../utils/faq.json';
 
 const FAQs = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+const [isMedium, setIsMedium] = useState(false);
+
+useEffect(() => {
+  const handleResize = () => {
+    const width = window.innerWidth;
+    setIsMobile(width < 768);
+    setIsMedium(width >= 768 && width < 1024);
+  };
+  handleResize();
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
+
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -113,7 +127,7 @@ const FAQs = () => {
           style={{
             color: 'white',
             fontFamily: "'Marcellus SC', serif",
-            fontSize: '20pt',
+            fontSize: isMobile ? '14pt' : isMedium ? '17pt' : '20pt',
             maxWidth: '800px',
             width: '100%',
           }}
@@ -154,7 +168,7 @@ const FAQs = () => {
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
                   color: 'white',
-                  fontSize: '4em',
+                  fontSize: isMobile ? '2.5em' : isMedium ? '3.5em' : '4em',
                   fontWeight: 'bold',
                   zIndex: 3,
                   letterSpacing: '1px',
@@ -214,7 +228,7 @@ const FAQs = () => {
                       border: 'none',
                       color: 'white',
                       textAlign: 'left',
-                      fontSize: '20pt',
+                      fontSize: isMobile ? '14pt' : isMedium ? '17pt' : '20pt',
                       fontWeight: 'bold',
                       cursor: 'pointer',
                       paddingLeft: '2rem',
@@ -240,7 +254,7 @@ const FAQs = () => {
                           whiteSpace: 'pre-wrap',
                         }}
                       >
-                        <p style={{ fontSize: '16pt', fontWeight: 300 }}>{faq.answer}</p>
+                        <p style={{  fontSize: isMobile ? '13pt' : isMedium ? '15pt' : '16pt', fontWeight: 300 }}>{faq.answer}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>

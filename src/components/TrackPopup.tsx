@@ -30,6 +30,7 @@ const TrackPopup = ({ selectedTrack, onClose }: TrackPopupProps) => {
         justifyContent: 'center',
         alignItems: 'center',
         padding: '2rem',
+        overflowY: 'auto',
       }}
     >
       <motion.div
@@ -46,7 +47,7 @@ const TrackPopup = ({ selectedTrack, onClose }: TrackPopupProps) => {
           boxShadow: '0 0 20px rgba(0,0,0,0.5)',
           position: 'relative',
           overflowY: 'auto',
-          maxHeight: '100vh',
+          margin: 'auto',
         }}
       >
         <button

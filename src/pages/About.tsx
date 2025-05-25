@@ -1,7 +1,17 @@
-
+"use client"
+import { useState, useEffect } from 'react';
 import FloatingObject from '../components/FloatingObject';
 
 const About = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+  const handleResize = () => setIsMobile(window.innerWidth < 768);
+  handleResize();
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
   return (
     <section id="about">
     <div style={{ position: 'relative', minHeight: '150vh', width: '100vw', overflowX: 'hidden' }}>
@@ -59,7 +69,7 @@ const About = () => {
           style={{
             color: 'black',
             fontFamily: "'Marcellus SC', serif",
-            fontSize: '32pt', 
+            fontSize: isMobile ? '28pt' : '32pt', 
             textAlign: 'center',
             maxWidth: '800px',
             lineHeight: '1.6',

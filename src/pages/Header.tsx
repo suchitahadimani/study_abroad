@@ -13,6 +13,19 @@ function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  const [isMedium, setIsMedium] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsMedium(width >= 768 && width < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Update mobile flag on resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -47,7 +60,7 @@ function Header() {
   const formatNumber = (num: number) => num.toString().padStart(2, "0");
 
   return (
-    <div style={{ position: 'relative', minHeight: '90vh',  width: '100vw', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', maxHeight:'150vh', width: '100vw', overflowX: 'hidden',overflowY: 'hidden', }}>
       {/* Gradient background */}
       <div
         style={{
@@ -166,6 +179,7 @@ function Header() {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: '4rem 6vw',
+          
           boxSizing: 'border-box',
           flexWrap: 'wrap',
         }}
@@ -191,8 +205,8 @@ function Header() {
                 maxWidth: "400px",
                 height: "auto",
                 objectFit: "contain",
-                maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                maskImage: "linear-gradient(to bottom, black 50%, transparent 80%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 80%)",
                 opacity: 1,
               }}
             />
@@ -224,9 +238,9 @@ function Header() {
 
 
         {/* Countdown text */}
-        <div style={{ flex: 1, color: 'white', fontFamily: "'Marcellus SC', serif", textAlign: 'right', zIndex: 3, minWidth: '300px'}}>
-          <div style={{ fontSize: isMobile ? '48pt' : '65pt',}}>CS ORIGINS HACKATHON 2026</div>
-          <div style={{ fontSize: isMobile ? '28pt' : '32pt', marginTop: '1rem', marginBottom: '4rem' }}>January 12, 2026</div>
+        <div style={{ flex: 1, color: 'white', fontFamily: "'Marcellus SC', serif", textAlign: 'right', zIndex: 3, minWidth: '300px', transform: isMobile ? 'translateY(0%)' : 'translateY(-20%)'}}>
+          <div style={{ fontSize: isMobile ? '36pt' : isMedium ? '48pt' : '65pt',}}>CS ORIGINS HACKATHON 2026</div>
+          <div style={{ fontSize: isMobile ? '24pt' : isMedium ? '28pt' : '32pt', marginTop: '1rem', marginBottom: '4rem' }}>January 12, 2026</div>
 
           <div
           style={{
@@ -236,9 +250,9 @@ function Header() {
             alignItems: isMobile ? 'center' : 'flex-end',
             gap: isMobile ? '2rem' : '4rem',
             marginTop: '4rem',
-            fontSize: isMobile ? '36pt' : '48pt',
+            fontSize: isMobile ? '28pt' : isMedium ? '36pt' : '48pt',
             textShadow: '0 0 8px white, 0 0 15px #5dafff',
-            flexWrap: 'wrap',
+            
           }}
         >
 
