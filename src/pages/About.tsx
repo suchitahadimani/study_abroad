@@ -5,12 +5,18 @@ import FloatingObject from '../components/FloatingObject';
 const About = () => {
   const [isMobile, setIsMobile] = useState(false);
 
+  const [isMedium, setIsMedium] = useState(false);
+
   useEffect(() => {
-  const handleResize = () => setIsMobile(window.innerWidth < 768);
-  handleResize();
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsMedium(width >= 768 && width < 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <section id="about">
@@ -69,14 +75,13 @@ const About = () => {
           style={{
             color: 'black',
             fontFamily: "'Marcellus SC', serif",
-            fontSize: isMobile ? '28pt' : '32pt', 
             textAlign: 'center',
             maxWidth: '800px',
             lineHeight: '1.6',
           }}
         >
-          <h1>About</h1>
-          <p>
+          <h1 style={{ fontSize: isMobile ? '36pt' : isMedium ? '48pt' : '65pt'}}>About</h1>
+          <p style={{ fontSize: isMobile ? '24pt' : isMedium ? '28pt' : '32pt'}}>
             This theme bridges the historical contributions of Turing, Babbage, and Lovelace with
             modern CS challenges, integrating ethical considerations, software development, and
             intercultural engagement. You will be able to explore computational history while solving
