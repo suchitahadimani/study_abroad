@@ -47,7 +47,7 @@ function Header() {
   const formatNumber = (num: number) => num.toString().padStart(2, "0");
 
   return (
-    <div style={{ position: 'relative', minHeight: '90vh', width: '100vw', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '90vh',  width: '100vw', overflowX: 'hidden' }}>
       {/* Gradient background */}
       <div
         style={{
@@ -80,16 +80,17 @@ function Header() {
                 fontSize: '32pt',
                 color: 'white',
                 cursor: 'pointer',
+                textAlign: 'right',
               }}
             >
-              ☰
+              {isMobileMenuOpen ? '▲' : '☰'}
             </div>
 
             {isMobileMenuOpen && (
               <div
                 style={{
                   marginTop: '1rem',
-                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  backgroundColor: '#C0D6F5',
                   padding: '1rem 2rem',
                   borderRadius: '10px',
                   display: 'flex',
@@ -160,6 +161,7 @@ function Header() {
           position: 'relative',
           zIndex: 2,
           minHeight: '90vh',
+          display: 'flex',
           flexDirection: isMobile ? 'column-reverse' : 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -170,33 +172,55 @@ function Header() {
       >
         {/* Left side image */}
 
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: isMobile ? 'absolute' : 'relative',
-          top: isMobile ? 0 : undefined,
-          left: isMobile ? 0 : '-25vw',
-          width: isMobile ? '100%' : 'auto',
-          height: isMobile ? '100%' : 'auto',
-          opacity: isMobile ? 0.15 : 1,
-          zIndex: isMobile ? 1 : 2,
-          pointerEvents: 'none',
-        }}
-      >
-        <img
-          src="/assets/big_ben.svg"
-          alt="UK Background"
+      {/* Image (desktop only) */}
+        {!isMobile && (
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              pointerEvents: "none",
+            }}
+          >
+            <img
+              src="/assets/big_ben.svg"
+              alt="UK Background"
+              style={{
+                width: "100%",
+                maxWidth: "400px",
+                height: "auto",
+                objectFit: "contain",
+                maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                opacity: 1,
+              }}
+            />
+          </div>
+        )}
+
+        {/* Mobile background image */}
+      {isMobile && (
+        <div
           style={{
-            width: isMobile ? '80%' : '90%',
-            maxWidth: isMobile ? '400px' : '300px',
-            height: 'auto',
-            objectFit: 'contain',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url(/assets/big_ben.svg)",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center bottom",
+            opacity: 0.15,
+            pointerEvents: "none",
+            zIndex: 1,
+            maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
           }}
         />
-      </div>
+      )}
+
 
 
         {/* Countdown text */}

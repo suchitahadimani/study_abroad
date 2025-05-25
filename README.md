@@ -1,50 +1,23 @@
-# React + TypeScript + Vite
+# UK Hackathon Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A themed hackathon landing page built for a study abroad course. Designed in Figma and implemented using React and Framer Motion.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Custom UI inspired by UK cultural elements
+- Interactive animations using Framer Motion
+- Responsive design with mobile support
+- Themed "Tracks" section with visual and motion effects
+- Modular React component structure for easy updates
 
-## Expanding the ESLint configuration
+## Tools & Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React** – Frontend framework
+- **Framer Motion** – UI animation library
+- **Figma** – UI/UX design and prototyping
+- **Pixabay / Freepik / IconScout** – Visual assets
 
-- Configure the top-level `parserOptions` property like this:
+## Live Preview
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+[ https://study-abroad-omega.vercel.app/]( https://study-abroad-omega.vercel.app/)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
